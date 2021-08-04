@@ -256,13 +256,39 @@ float sumOfGP(float a1,float r,int n){
 	return (a1*(power(r,n)-1))/(r-1);
 }
 
-int gcd(int a,int b){
-	int m=max(a,b);
-	if(1){
-		
+int gcd(int a,int b){//HCF
+	if(a-b==0)
+		return a;
+	else if(a>b){
+		if(a%b==0)
+			return b;
+		return gcd(a-b,b);	
 	}
 	else{
-		
+		if(b%a==0)
+			return a;
+		return gcd(b-a,a);
 	}
 }
 
+int lcm(int a,int b){
+	int i=2;
+	if(a-b==0)
+		return a;
+	else if(a>b){
+		if(a%b==0)
+			return a;
+		else{
+			return lcm(a*i,b);
+			i++;			
+		}
+	}
+	else{
+		if(b%a==0)
+			return b;
+		else{
+			return lcm(a,b*i);
+			i++;			
+		}
+	}
+}
