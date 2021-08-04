@@ -1,5 +1,5 @@
 #include<iostream>
-
+#include<math.h>
 #define PI 3.14
 
 using namespace std;
@@ -135,17 +135,17 @@ void multiplicationTable(int n){
 
 float calculator(float a,float b,char ch){
 	switch(ch){
-		'+':return a+b;
+		case '+':return a+b;
 			break;
-		'-':return a-b;
+		case '-':return a-b;
 			break;
-		'/':return a/b;
+		case '/':return a/b;
 			break;
-		'*':return a*b;
+		case '*':return a*b;
 			break;
-		'%':return a%b;
+		case '%':return (int)a%(int)b;
 			break;
-		'^':return power(a,b);
+		case '^':return power(a,b);
 			break;
 		default:return 0;
 			
@@ -158,6 +158,62 @@ float tempCTOF(float c){
 
 float tempFTOC(float f){
 	return  ((f-32.0)*5.0)/9.0;
+}
+
+int armstrong(int n){
+	int temp,save=n,sum=0;
+	while(n>0){
+		temp=n%10;
+		n=n/10;
+		sum+=power(temp,3);
+	}
+	if(sum==save)
+		return 1;
+	return 0;
+}
+
+int triangleType(int a,int b,int c){
+	if(a==b && b==c)
+		return 3;//equilateral triangle
+	else if(b==c || a==c)
+		return 2;//isosceles triangle
+	else
+		return 1;//scalene triangle
+}
+
+int vowel(char ch){
+	if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u' || ch=='A' || ch=='E' || ch=='I' || ch=='O' || ch=='U')
+		return 1;//Vowel
+	return 0;//Consonant
+}
+
+char upperToLower(char ch){//Uppercase to lowercase Alphabet
+	if(ch>=65 && ch<=90)
+		return ch+32;
+	return '0';
+}
+
+char lowerToUpper(char ch){// lowercase to Uppercase Alphabet
+	if(ch>=97 && ch<=122)
+		return ch-32;
+	return '0';
+}
+
+int factorial(int n){
+	int fact=1;
+	for(int i=n;i>=1;i--){
+		fact*=i;
+	}
+	return fact;
+}
+
+int prime(int n){
+	int sqr=sqrt(n);
+	for(int i=2;i<=sqr;i++){
+		if(n%i==0)
+			return 0;
+	}
+	return 1;
 }
 
 int gcd(int a,int b){
