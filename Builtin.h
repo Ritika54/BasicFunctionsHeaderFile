@@ -216,6 +216,46 @@ int prime(int n){
 	return 1;
 }
 
+void roots(int a,int b,int c,float ar[]){//roots will be sent only if they are real
+	int d;
+	d=power(b,2)-4.0*a*c;
+	if(d>=0){
+		ar[0]=((-2.0)*a + sqrt((float)d))/(2*a);
+		ar[1]=((-2.0)*a - sqrt((float)d))/(2*a);
+	}
+}
+
+int greatestin3(int a,int b,int c){
+	if(a>b && a>c)
+		return a;
+	else if(b>c)
+		return b;
+	return c;
+}
+
+void swap(int *a,int *b){
+	int *temp;
+	*temp=*a;
+	*a=*b;
+	*b=*temp;
+}
+
+int nthtermAP(int a1,int d,int n){
+	return a1+(n-1)*d;
+}
+
+int sumOfAP(int a1,int d,int n){
+	return (n/2)*((2*a1)+(n-1)*d);
+}
+
+int nthtermGP(int a1,int r,int n){
+	return a1*power(r,n-1);
+}
+
+float sumOfGP(float a1,float r,int n){
+	return (a1*(power(r,n)-1))/(r-1);
+}
+
 int gcd(int a,int b){
 	int m=max(a,b);
 	if(1){
