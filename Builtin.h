@@ -96,6 +96,70 @@ void fibonacci(int n){
 	}
 }
 
+int sumFibonacci(int n){
+	int f=0,s=1,next=1;
+	for(int i=1;i<=n;i++){
+		next=f+s;
+		f=s;
+		s=next;
+	}
+	return next;
+}
+
+int palindrome(int n){
+	int sum=0,temp,save=n;
+	while(n>0){
+		temp=n%10;
+		n=n/10;
+		sum=sum*10+temp;
+	}
+	if(sum==save)
+		return 1;
+	return 0;
+}
+
+int reverseNo(int n){
+	int sum=0,temp;
+	while(n>0){
+		temp=n%10;
+		n=n/10;
+		sum=sum*10+temp;
+	}
+	return sum;
+}
+
+void multiplicationTable(int n){
+	for(int i=1;i<=10;i++)
+		cout<<n<<"\t*\t"<<i<<"\t=\t"<<n*i<<"\n";
+}
+
+float calculator(float a,float b,char ch){
+	switch(ch){
+		'+':return a+b;
+			break;
+		'-':return a-b;
+			break;
+		'/':return a/b;
+			break;
+		'*':return a*b;
+			break;
+		'%':return a%b;
+			break;
+		'^':return power(a,b);
+			break;
+		default:return 0;
+			
+	}
+}
+
+float tempCTOF(float c){
+	return  c*(9.0/5.0) + 32.0;
+}
+
+float tempFTOC(float f){
+	return  ((f-32.0)*5.0)/9.0;
+}
+
 int gcd(int a,int b){
 	int m=max(a,b);
 	if(1){
