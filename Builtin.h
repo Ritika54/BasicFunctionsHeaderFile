@@ -244,12 +244,20 @@ int nthtermAP(int a1,int d,int n){
 	return a1+(n-1)*d;
 }
 
+int commonDiffAP(int firstTerm,int secondTerm){
+	return secondTerm-firstTerm;
+}
+
 int sumOfAP(int a1,int d,int n){
 	return (n/2)*((2*a1)+(n-1)*d);
 }
 
 int nthtermGP(int a1,int r,int n){
 	return a1*power(r,n-1);
+}
+
+int constantRatioGP(int firstTerm,int secondTerm){
+	return secondTerm/firstTerm;
 }
 
 float sumOfGP(float a1,float r,int n){
@@ -291,4 +299,68 @@ int lcm(int a,int b){
 			i++;			
 		}
 	}
+}
+int index=-1;
+int pushArray(int a[],int ele){
+	int length=sizeof(a)/sizeof(int);
+	if(index<=length-1){
+		a[++index]=ele;
+		return 1;
+	}
+return 0;
+}
+
+int popArray(int a[]){
+	int length=sizeof(a)/sizeof(int);
+	if(index<0)
+		return 0;
+	--index;
+	return 1;
+}
+
+int strlen(char str[]){
+	int l=0;
+	while(str[++l]!='\0');
+	return l;
+}
+
+int strcpy(char str[],char str2[]){
+	int length1=strlen(str);
+	int length2=strlen(str2);
+	
+	int i=0;
+	while(i<length1){
+		str2[i]=str[i];
+		i++;
+	}
+	return 1;
+}
+
+void swapChar(char *ch1,char *ch2){
+	char temp;
+	temp=*ch1;
+	*ch1=*ch2;
+	*ch2=temp;
+}
+
+int strrev(char str[]){
+	int length=strlen(str);
+	int i=0;
+	while(i<length/2){
+		swapChar(&str[i],&str[length-1-i]);
+		i++;
+	}
+	return 1;
+}
+
+int strcat(char str[],char str2[],char str3[]){
+	int l1=strlen(str);
+	int l2=strlen(str2);
+	int sum=l1+l2;
+	strcpy(str,str3);
+	int i=l1,k=0;
+	while(i<sum){
+		str3[i++]=str2[k++];
+	}
+	return 1;
 }
