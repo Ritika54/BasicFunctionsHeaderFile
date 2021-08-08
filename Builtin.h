@@ -481,12 +481,44 @@ string decimalTohex(int a){
 	return strrev(hex);
 }
 
-string binaryToOctal(string str){
+string binToOct[8]={"000","001","010","011","100","101","110","111"};
+string binToHex[16]={"0000","0001","0010","0011","0100","0101","0110","0111",
+					"1000","1001","1010","1011","1100","1101","1110","1111"};
 
+string binaryToOctal(string str){
+	
+	int l=strlen(str)-1;
+	int i=0,j=0;
+	string oct,temp;
+	
+	while(i<=l){
+
+		strcat(strcat(str[l-2],str[l-1],temp),str[l],temp);//need to do something if length is not mutiple of 3(if pairs are unable to complete)
+		while(j<8){
+			if(strequal(temp,binToOct[j]))
+				break;
+			j++;
+		}
+		oct[i]=j;
+		i++;
+		l-=3;
+	}
+
+	return oct;
 }
 
 string octalToBinary(string str){
+	
+	int l=strlen(str)-1;
+	int i=0,j=0;
+	string bin;
+	
+	while(i<=l){
+		strcpy(binToOct(str[i]-'0'),bin[j]);
+		j+=3;
+	}
 
+	return bin;
 }
 
 string hexToBinary(string str){
@@ -507,9 +539,21 @@ string hexToOctal(string str){
 	return hexToBinary(binaryToOctal(str));
 }
 
-int linearSearch(int ele){
+int linearSearch(int arr[],int ele){
 	
-	return -1;//if unsorted array is entered
+	int l=sizeof(arr)/sizeof(int);
+	//checking whether sorted array is entered or not
+	for(int i=0;i<l;i++){
+		if(arr[i]>arr[i+1])
+			return -100;//if unsorted array entered
+	}
+	
+	for(int i=0;i<l;i++){
+		if(arr[i]==ele)
+			return i+1;
+	}
+	
+	return -1;//if element not found
 }
 
 int binarySearch(int ele){
