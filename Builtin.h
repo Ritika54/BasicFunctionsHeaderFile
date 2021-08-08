@@ -280,6 +280,7 @@ int gcd(int a,int b){//HCF
 }
 
 int lcm(int a,int b){
+
 	int i=2;
 	if(a-b==0)
 		return a;
@@ -300,31 +301,40 @@ int lcm(int a,int b){
 		}
 	}
 }
-int index=-1;
+
+int index=-1;//GLOBAL
+
 int pushArray(int a[],int ele){
+	
 	int length=sizeof(a)/sizeof(int);
 	if(index<=length-1){
 		a[++index]=ele;
 		return 1;
 	}
-return 0;
+	
+	return 0;
 }
 
 int popArray(int a[]){
+
 	int length=sizeof(a)/sizeof(int);
 	if(index<0)
 		return 0;
 	--index;
+
 	return 1;
 }
 
 int strlen(char str[]){
+
 	int l=0;
 	while(str[++l]!='\0');
+
 	return l;
 }
 
 int strcpy(char str[],char str2[]){
+
 	int length1=strlen(str);
 	int length2=strlen(str2);
 	
@@ -333,10 +343,12 @@ int strcpy(char str[],char str2[]){
 		str2[i]=str[i];
 		i++;
 	}
+
 	return 1;
 }
 
 void swapChar(char *ch1,char *ch2){
+	
 	char temp;
 	temp=*ch1;
 	*ch1=*ch2;
@@ -344,16 +356,19 @@ void swapChar(char *ch1,char *ch2){
 }
 
 int strrev(char str[]){
+	
 	int length=strlen(str);
 	int i=0;
 	while(i<length/2){
 		swapChar(&str[i],&str[length-1-i]);
 		i++;
 	}
+	
 	return 1;
 }
 
 int strcat(char str[],char str2[],char str3[]){
+	
 	int l1=strlen(str);
 	int l2=strlen(str2);
 	int sum=l1+l2;
@@ -362,5 +377,159 @@ int strcat(char str[],char str2[],char str3[]){
 	while(i<sum){
 		str3[i++]=str2[k++];
 	}
+	
 	return 1;
 }
+
+int binaryToDecimal(string str){
+	
+	int l=strlen(str)-1;
+	int sum=0,i=0;
+	while(l>=0){
+		if(str[i]>'1')
+			return -1;
+		sum+=str[i]*power(2,l);
+		l--;
+		i++;
+	}
+
+	return sum;
+}
+
+int decimalToBinary(int a){
+	
+	int bin=0,temp,i=0;
+	while(a>0){
+		temp = a%2;
+		a=a/2;
+		bin += temp*power(10,i);
+		i++;
+	}
+
+	return bin;
+}
+
+int octalToDecimal(string str){
+	
+	int l=strlen(str)-1;
+	int sum=0,i=0;
+	while(l>=0){
+		if(str[i]>'7')
+			return -1;
+		sum+=str[i]*power(8,l);
+		l--;
+		i++;
+	}
+
+	return sum;
+}
+
+int decimalToOctal(int a){
+	
+	int oct=0,temp,i=0;
+	while(a>0){
+		temp = a%8;
+		a=a/8;
+		bin += temp*power(10,i);
+		i++;
+	}
+	
+	return oct;
+}
+
+int hexToDecimal(string str){
+	
+	int l=strlen(str)-1;
+	int sum=0,i=0;
+	
+	while(l>=0){
+		if(str[i]>=65 && str[i]<=70){
+			sum+=(str[i]-55)*power(16,l);
+			l--;
+		}
+		else if(str[i]>=97 && str[i]<=102){
+			sum+=(str[i]-87)*power(16,l);
+			l--;
+		}
+		else{
+			sum+=(str[i]-55)*power(16,l);
+			l--;
+		}
+		i++;
+	}
+
+	return sum;
+}
+
+string decimalTohex(int a){
+	
+	int temp,i=0;
+	string hex;
+	
+	while(a>0){
+		temp = a%16;
+		a=a/16;
+		if(temp>=10){
+			hex[i]=temp+87;
+		}
+		else{
+			hrx[i]=temp+48;
+		}
+		i++;
+	}
+
+	return strrev(hex);
+}
+
+string binaryToOctal(string str){
+
+}
+
+string octalToBinary(string str){
+
+}
+
+string hexToBinary(string str){
+
+}
+
+string binaryToHex(string){
+
+}
+
+string octalTohex(string str){
+	
+	return octalToBinary(binaryToHex(str));
+}
+
+string hexToOctal(string str){
+	
+	return hexToBinary(binaryToOctal(str));
+}
+
+int linearSearch(int ele){
+	
+	return -1;//if unsorted array is entered
+}
+
+int binarySearch(int ele){
+	
+	return -1;//if element not found
+}
+
+void selectionSort(){
+
+}
+
+void insertionSort(){
+
+}
+
+void bubbleSort(){
+
+}
+
+void quickSort(){
+
+}
+
