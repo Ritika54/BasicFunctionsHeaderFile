@@ -333,6 +333,20 @@ int strlen(char str[]){
 	return l;
 }
 
+int strEqual(char *str1,char *str2){
+	
+	int l1=strlen(str1);
+	int l2=strlen(str2);
+	if(l1 != l2)
+		return 0;
+	for(int i=0;i<l1;i++){
+		if(*(str1 + i) != *(str2 + i))
+			return 0;		
+	}
+
+	return 1;	
+}
+
 int strcpy(char str[],char str2[]){
 
 	int length1=strlen(str);
@@ -381,14 +395,14 @@ int strcat(char str[],char str2[],char str3[]){
 	return 1;
 }
 
-int binaryToDecimal(string str){
+int binaryToDecimal(char *str){
 	
 	int l=strlen(str)-1;
 	int sum=0,i=0;
 	while(l>=0){
 		if(str[i]>'1')
 			return -1;
-		sum+=str[i]*power(2,l);
+		sum+=(str[i]-'0')*power(2,l);
 		l--;
 		i++;
 	}
@@ -409,14 +423,14 @@ int decimalToBinary(int a){
 	return bin;
 }
 
-int octalToDecimal(string str){
+int octalToDecimal(char *str){
 	
 	int l=strlen(str)-1;
 	int sum=0,i=0;
 	while(l>=0){
 		if(str[i]>'7')
 			return -1;
-		sum+=str[i]*power(8,l);
+		sum+=(str[i]-'0')*power(8,l);
 		l--;
 		i++;
 	}
@@ -430,16 +444,16 @@ int decimalToOctal(int a){
 	while(a>0){
 		temp = a%8;
 		a=a/8;
-		bin += temp*power(10,i);
+		oct += temp*power(10,i);
 		i++;
 	}
 	
 	return oct;
 }
 
-int hexToDecimal(string str){
+int hexToDecimal(char *str){
 	
-	int l=strlen(str)-1;
+	int l = strlen(str)-1;
 	int sum=0,i=0;
 	
 	while(l>=0){
@@ -452,7 +466,7 @@ int hexToDecimal(string str){
 			l--;
 		}
 		else{
-			sum+=(str[i]-55)*power(16,l);
+			sum+=(str[i]-'0')*power(16,l);
 			l--;
 		}
 		i++;
@@ -461,41 +475,42 @@ int hexToDecimal(string str){
 	return sum;
 }
 
-string decimalTohex(int a){
+char hexArr[16]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+
+char* decimalTohex(int a){
+	printf("1");
 	
 	int temp,i=0;
-	string hex;
+	char *hex;
+	printf("2");
 	
 	while(a>0){
+	printf("3");
 		temp = a%16;
 		a=a/16;
-		if(temp>=10){
-			hex[i]=temp+87;
-		}
-		else{
-			hrx[i]=temp+48;
-		}
+		*(hex + i)=hexArr[temp];
 		i++;
 	}
-
-	return strrev(hex);
+	printf("%s",hex);
+    strrev(hex);
+	return hex;
 }
 
-string binToOct[8]={"000","001","010","011","100","101","110","111"};
-string binToHex[16]={"0000","0001","0010","0011","0100","0101","0110","0111",
+char* binToOct[8]={"000","001","010","011","100","101","110","111"};
+char* binToHex[16]={"0000","0001","0010","0011","0100","0101","0110","0111",
 					"1000","1001","1010","1011","1100","1101","1110","1111"};
 
-string binaryToOctal(string str){
+char* binaryToOctal(char *str){
 	
 	int l=strlen(str)-1;
 	int i=0,j=0;
-	string oct,temp;
+	char *oct,*temp;
 	
 	while(i<=l){
-
-		strcat(strcat(str[l-2],str[l-1],temp),str[l],temp);//need to do something if length is not mutiple of 3(if pairs are unable to complete)
+		strcat(&str[l-2],&str[l-1],temp);
+		strcat(temp,&str[l],temp);//need to do something if length is not mutiple of 3(if pairs are unable to complete)
 		while(j<8){
-			if(strequal(temp,binToOct[j]))
+			if(strEqual(temp,binToOct[j]))
 				break;
 			j++;
 		}
@@ -507,34 +522,34 @@ string binaryToOctal(string str){
 	return oct;
 }
 
-string octalToBinary(string str){
+char* octalToBinary(char *str){
 	
 	int l=strlen(str)-1;
 	int i=0,j=0;
-	string bin;
+	char *bin;
 	
 	while(i<=l){
-		strcpy(binToOct(str[i]-'0'),bin[j]);
+		strcpy(binToOct[str[i]-'0'],&bin[j]);
 		j+=3;
 	}
 
 	return bin;
 }
 
-string hexToBinary(string str){
+char* hexToBinary(char* str){
 
 }
 
-string binaryToHex(string){
+char* binaryToHex(char* str){
 
 }
 
-string octalTohex(string str){
+char* octalTohex(char *str){
 	
 	return octalToBinary(binaryToHex(str));
 }
 
-string hexToOctal(string str){
+char * hexToOctal(char* str){
 	
 	return hexToBinary(binaryToOctal(str));
 }
@@ -575,5 +590,28 @@ void bubbleSort(){
 
 void quickSort(){
 
+}
+//TECH 13
+void caesarCipher(char *str,int n){
+	
+	int l = strlen(str);
+    int key=n-26;
+	for(int i=0;i<l;i++){
+	    if(*(str+i)+n <= 'z')
+	        *(str+i)+=n;
+	    else
+    		*(str+i) += key;
+	}
+}
+
+int strPalindrome(char* str){
+
+	int l=strlen(str);
+	int n=l/2,x=l -1 ;
+	for(int i=0;i<n;i++){
+		if(*(str+i) != *(str + x - i) )
+			return 0;
+	}
+	return 1;
 }
 
