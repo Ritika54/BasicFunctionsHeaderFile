@@ -24,6 +24,16 @@ char AsciiToChar(int x){
 	return x;
 }
 
+int lengthOfInteger(int a){
+
+    int l=0;
+    while(a){
+        a/=10;
+        l++;
+    }
+    return l;
+}
+
 int max(int a,int b){
 	if(a>b)
 		return a;
