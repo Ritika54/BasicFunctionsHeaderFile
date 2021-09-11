@@ -670,7 +670,7 @@ int quickSort(int arr[],int low,int high){
 //     quickSort(arr,pivot+1,h);
 // }
 
-int merge(int arr[],int low,int mid,int high){
+void merge(int arr[],int low,int mid,int high){
     int n1=mid-low+1;
     int n2=high-mid;
     int i=0,j=0,k=0;
@@ -698,13 +698,19 @@ int merge(int arr[],int low,int mid,int high){
     }
 }
 
-int mergeSort(int arr[],int low,int high){
+void mergeSort(int arr[],int low,int high){
     if(low<high){
         int mid=(low+high)/2;
         mergeSort(arr,low,mid);
         mergeSort(arr,mid+1,high);
         merge(arr,low,mid,high);
     }
+}
+//TIM SORT
+//BEST case = O(n)
+//Worst/Avg = O(nlogn)
+void timSort(int arr,int n){
+
 }
 
 //TECH 13
