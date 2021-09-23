@@ -96,7 +96,7 @@ int sumOfNaturalNo(int n){
 	return sum;
 }
 
-void fibonacci(int n){
+void printFibonacci(int n){
 	int f=0,s=1,next=1;
 	for(int i=1;i<=n;i++){
 		next=f+s;
@@ -217,13 +217,19 @@ int factorial(int n){
 	return fact;
 }
 
+//checks whether n is prime 
 int prime(int n){
-	int sqr=sqrt(n);
-	for(int i=2;i<=sqr;i++){
-		if(n%i==0)
-			return 0;
-	}
-	return 1;
+    int sqr=sqrt(n);
+    if(n==2)
+        return 1;
+    if(n%2==0)
+        return 0;
+    for (int i = 3; i <= sqr; i+=2){
+        if(n%i==0){
+            return 0;
+        }
+    }
+    return 1;
 }
 
 void roots(int a,int b,int c,float ar[]){//roots will be sent only if they are real
@@ -685,7 +691,7 @@ void merge(int arr[],int low,int mid,int high){
     }
     i=0;j=0;k=low;
     while(i<n1 && j<n2){
-        if(a1[i]<a[j])
+        if(a1[i]<a2[j])
             arr[k++]=a1[i++];
         else
             arr[k++]=a2[j++];
@@ -737,3 +743,28 @@ int strPalindrome(char* str){
 	return 1;
 }
 
+//returns nth fibonacci number
+int fibo(int n){
+    if(n==1)
+        return 0;
+    if(n==2 || n==3)
+        return 1;
+    int first=1,second=1,sum=first+second;
+    for(int i=1;i<=n-4;i++){
+        sum=first+second;
+        first=second;
+        second=sum;
+    }
+    return sum;
+}
+
+int nthPrime(int n){
+	int i=1;
+	while(n!=0){
+        i++;
+        if(prime(i)){
+            n--;
+        }
+    }
+	return i;
+}
